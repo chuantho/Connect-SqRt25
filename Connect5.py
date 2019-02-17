@@ -42,8 +42,17 @@ class BoardModel:
     def get_columns(self):
         """Return the number of columns of the game board"""
         return self.columns
-                   
-               
+    
+    def random_place(self):
+        """Return the tuple of the location of the token about to
+            be randomly placed"""
+        trigger = False
+        while trigger == False:
+            row = random.randint(1,19)
+            column = random.randint(1,19)
+            #To make sure the spot isnt already taken
+            if self.model.get_board()[row][column] != 0:
+                return (row, column)
                
 # V of MVC                
 class BoardView:
