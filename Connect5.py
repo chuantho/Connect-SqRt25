@@ -1,4 +1,5 @@
 import pygame
+import time
 
 
 # Define some base colors
@@ -123,3 +124,6 @@ if __name__ == "__main__":
     
     # Terminate pygame
     pygame.quit()
+    
+    # Pause game view before terminating
+    time.sleep(5)
