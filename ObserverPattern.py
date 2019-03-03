@@ -11,6 +11,7 @@ class Observer:
         Raises a NotImplementedError if update() is not implemented by a subclass.
         """
         raise NotImplementedError("Update method is not implmented.")
+
 class Observable:
     """
     The Observable class keeps track of one or more Observer objects by
@@ -29,7 +30,6 @@ class Observable:
         """
         self.observers.append(o)
 
-
     def detach(self, o: Observer):
         """Remove Observer o from the list of observers.
         """
@@ -39,5 +39,5 @@ class Observable:
     def notify_observers(self):
         """Update all observers.
         """
-        for o in self.observers:
-            o.update(self)
+        for observer in self.observers:
+            observer.update()
