@@ -5,15 +5,14 @@ import random
 
 # Define some base colors
 
+# Board colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+# Player colors
 RED = (255, 0, 0)
 BLUE = (0, 255, 0)
 GREEN = (0, 0, 255)
-
-
-
 
 # M of MVC
 class BoardModel:
@@ -90,8 +89,8 @@ class BoardModel:
         print("Horizontal:" + str(left + right))
 
         if ((left + right + 1) >= 5):
-            print("Player ", str(player), " won the game!\n")
-            return
+            print("Player", str(player), " won the game!\n")
+            return True
             
     # Check if player won vertically
             
@@ -123,8 +122,8 @@ class BoardModel:
         print("Vertical:" + str(top + bottom))
                     
         if ((top + bottom + 1) >= 5):
-            print("Player ", str(player), " won the game!\n")
-            return
+            print("Player", str(player), " won the game!\n")
+            return True
 
     # Check if player won diagonally (1)
             
@@ -156,8 +155,8 @@ class BoardModel:
         print("Diagonal (1):" + str(topleft + bottomright))
                 
         if ((topleft + bottomright + 1) >= 5):
-            print("Player ", str(player), " won the game!\n")  
-            return
+            print("Player", str(player), " won the game!\n")  
+            return True 
                     
     # Check if player won diagonally (2)
             
@@ -189,10 +188,12 @@ class BoardModel:
         print("Diagonal (2):" + str(topright + bottomleft))
                 
         if ((topright + bottomleft + 1) >= 5):
-            print("Player ", str(player), " won the game!\n") 
-            return
+            print("Player", str(player), " won the game!\n") 
+            return True
         
         print("\n")
+        
+        return False
                
                
 # V of MVC                
@@ -237,12 +238,10 @@ class BoardView:
                 if self.model.get_board()[row][column] == 0:
                     color = WHITE
                     
-                elif self.model.get_board()[row][column] == 1:
-                    #r = random.randint(0, 255)
-                    #g = random.randint(0, 255)
-                    #b = random.randint(0, 255)
-                    #color = (r, g, b)
-                    color = RED
+                else :   
+                    for player in range(1, num_players + 1):
+                        if self.model.get_board()[row][column] == player:
+                            color = player_list.get(player)
                 
                 # Find the x coordinate of the tile
                 x_coord = self.tile_margin + ((self.tile_size + self.tile_margin) * column)
@@ -255,11 +254,43 @@ class BoardView:
          
         # Update pygame display
         pygame.display.flip()
-
         
         
 # Controller        
 if __name__ == "__main__":
+    
+    # Multiplayer Setup
+    
+    # Prompt user for number of players
+    while True:
+        num_players = input("Please enter the number of players:\n")
+        
+        try:
+            num_players = int(num_players)
+            
+        except ValueError:
+            print("Number of players must be an integer\n")
+            continue
+        
+        if num_players > 0:
+            break
+        
+        else:
+            print("Minimum of 1 player required to play the game\n")
+          
+    # Initialize the player list      
+    player_list = {}
+    
+    for player in range(1, num_players + 1):
+        # Assign a color to every player
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = (r, g, b)    
+        
+        player_list[player] = color
+        print(player, player_list[player])
+        
 
     # Initialize pygame
     pygame.init()
@@ -311,7 +342,14 @@ if __name__ == "__main__":
                     view.update()
                     
                     # Check if winning move
-                    model.is_won(player, row, column)
+                    if model.is_won(player, row, column):
+                        is_done = True
+                        
+                    # Switch players
+                    player += 1
+                    
+                    if player > num_players:
+                        player = 1
                     
                 # If tile is claimed   
                 else:
