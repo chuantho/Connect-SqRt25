@@ -47,7 +47,152 @@ class BoardModel:
     def get_columns(self):
         """Return the number of columns of the game board"""
         return self.columns
+    
+    def is_claimed(self, player, row, column):
+        """Check if a given tile is claimed by the given palyer"""
+        
+        if self.board[row][column] == player:
+            return True
+        else:
+            return False
+        
                    
+    def is_won(self, player, row, column):
+        """Check if a given player has won the game"""
+        
+    # Check if player won horizontally
+        
+        # Check left
+        left = 0
+        
+        for i in range(1, 5):
+            if (0 <= column - i <= 18):
+                if self.is_claimed(player, row, column - i):
+                    left += 1
+                else:
+                    break                
+            
+        #//print("left:", left)
+            
+        # Check right
+        right = 0
+        
+        for i in range(1, 5):
+            if (0 <= column + i < 18):
+                if self.is_claimed(player, row, column + i):
+                    right += 1
+                else:
+                    break                
+            
+        #//print("right:", right)
+        
+        # Check if won
+        print("Horizontal:" + str(left + right))
+
+        if ((left + right + 1) >= 5):
+            print("Player ", str(player), " won the game!\n")
+            return
+            
+    # Check if player won vertically
+            
+        # Check top    
+        top = 0
+            
+        for i in range(1, 5):
+            if (0 <= row - i <= 18):
+                if self.is_claimed(player, row - i, column):
+                    top += 1
+                else:
+                    break                
+            
+        #//print("top:", top)
+        
+        # Check bottom
+        bottom = 0    
+        
+        for i in range(1, 5):
+            if (0 <= row + i <= 18):
+                if self.is_claimed(player, row + i, column):
+                    bottom += 1
+                else:
+                    break
+            
+        #//print("bottom:", bottom)
+        
+        # Check if won  
+        print("Vertical:" + str(top + bottom))
+                    
+        if ((top + bottom + 1) >= 5):
+            print("Player ", str(player), " won the game!\n")
+            return
+
+    # Check if player won diagonally (1)
+            
+        # Check top left
+        topleft = 0
+        
+        for i in range(1, 5):
+            if (0 <= row - i <= 18) and (0 <= column - i <= 18):
+                if self.is_claimed(player, row - i, column - i):
+                    topleft += 1
+                else:
+                    break                
+            
+        #//print("topleft:", topleft)
+            
+        # Check bottom right    
+        bottomright = 0
+        
+        for i in range(1, 5):
+            if (0 <= row + i <= 18) and (0 <= column + i <= 18):
+                if self.is_claimed(player, row + i, column + i):
+                    bottomright += 1
+                else:
+                    break                
+            
+        #//print("bottomright", bottomright)
+        
+        # Check if won
+        print("Diagonal (1):" + str(topleft + bottomright))
+                
+        if ((topleft + bottomright + 1) >= 5):
+            print("Player ", str(player), " won the game!\n")  
+            return
+                    
+    # Check if player won diagonally (2)
+            
+        # Check topright
+        topright = 0
+        
+        for i in range(1, 5):
+            if (0 <= row + i <= 18) and (0 <= column + i <= 18):
+                if self.is_claimed(player, row - i, column + i):
+                    topright += 1
+                else:
+                    break                
+
+        #//print("topright:", topright)
+        
+        # Check bottomleft
+        bottomleft = 0
+            
+        for i in range(1, 5):
+            if (0 <= row + i <= 18) and (0 <= column + i <= 18):
+                if self.is_claimed(player, row + i, column - i):
+                    bottomleft += 1
+                else:
+                    break                
+            
+        #//print("bottomleft:", bottomleft)
+        
+        # Check if won
+        print("Diagonal (2):" + str(topright + bottomleft))
+                
+        if ((topright + bottomleft + 1) >= 5):
+            print("Player ", str(player), " won the game!\n") 
+            return
+        
+        print("\n")
                
                
 # V of MVC                
@@ -93,6 +238,10 @@ class BoardView:
                     color = WHITE
                     
                 elif self.model.get_board()[row][column] == 1:
+                    #r = random.randint(0, 255)
+                    #g = random.randint(0, 255)
+                    #b = random.randint(0, 255)
+                    #color = (r, g, b)
                     color = RED
                 
                 # Find the x coordinate of the tile
@@ -152,17 +301,25 @@ if __name__ == "__main__":
                 row = click[1] // (tile_size + tile_margin)
                 
                 # If tile is unclaimed
-                
                 if board[row][column] == 0:
+                    
+                    # Claim tile
                     board[row][column] = player
                     print("Tile" + "[" + str(row) + "][" + str(column) + "] " + "claimed by Player " + str(player))
                     
                     #Update board
                     view.update()
                     
+                    # Check if winning move
+                    model.is_won(player, row, column)
+                    
                 # If tile is claimed   
                 else:
-                    print("Tile" + "[" + str(row) + "][" + str(column) + "] " + "already claimed by Player " + str(board[row][column]))                
+                    print("Tile" + 
+                          "[" + str(row) + "]" + 
+                          "[" + str(column) + "] " 
+                          + "already claimed by Player " 
+                          + str(board[row][column]))                
                 
         
             elif event.type == pygame.QUIT:
