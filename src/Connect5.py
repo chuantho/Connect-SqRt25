@@ -1,4 +1,7 @@
 import pygame
+from pygame import *
+import sys
+import os
 import time
 import random
 
@@ -194,8 +197,90 @@ class BoardModel:
         print("\n")
         
         return False
-               
-               
+
+class MainMenuView:
+    """Class responsible for visually representing the main menu """
+    
+    def __init__(self):
+        #Initalize a graphical representation of the main menu
+        
+        font = pygame.font.SysFont("tahoma", 25)
+        titlefont = pygame.font.SysFont("tahoma", 35)
+        window = [575,575]
+        pygame.display.set_caption ("Connect5")        
+        background = pygame.image.load("gomuku.jpg")
+        background= pygame.transform.scale(background, (575,575))
+        screen = pygame.display.set_mode(window)
+        screen.blit(background, (0,0))
+        #Sets values for each player    
+        player_one = 1
+        player_two = 2
+        player_three = 3
+        player_four = 4
+        player_five = 5
+        
+        #Sets the color to black
+        black_col = (0,0,0)
+        
+        title = titlefont.render("Connect Five", 1, black_col )
+        player_one = font.render("One Player", 1, black_col )
+        player_two = font.render("Two Player", 1, black_col )
+        player_three = font.render("Three Player", 1, black_col )
+        player_four = font.render("Four Player", 1, black_col )
+        player_five = font.render("Five Player", 1, black_col )
+        
+        #Default player mode is set to 1
+        player_mode = 1
+
+        #Display the labels based off the x and y coordinate respectively
+        screen.blit(title, (200,0))
+        screen.blit(player_one, (200,100))
+        screen.blit(player_two, (200,150))
+        screen.blit(player_three, (200,200))
+        screen.blit(player_four, (200,250))
+        screen.blit(player_five, (200,300))
+        pygame.display.flip()
+
+        
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONUP:
+                    # Get the co-ordinates of the mouse click
+                    x, y = pygame.mouse.get_pos()
+                    # Set the player mode based off the click co-ordinates 
+                    if(x >= 198 and x <= 320) and (y >= 105 and y <= 129):
+                        self.set_player_mode(1)
+                        return
+                        
+                    elif(x >= 200 and x <= 320) and (y >= 155 and y <= 179):
+                        self.set_player_mode(2)
+                        return 
+                        
+                    elif(x >= 200 and x <= 320) and (y >= 205 and y <= 228):
+                        self.set_player_mode(3)
+                        return
+     
+                    elif(x >= 200 and x <= 320) and (y >= 252 and y <= 280):
+                        self.set_player_mode(4)
+                        return
+                    
+                    elif(x >= 200 and x <= 320) and (y >= 302 and y <= 329):
+                        self.set_player_mode(4)
+                        return                    
+                    
+                elif event.type == pygame.QUIT:
+                    pygame.display.quit()
+                    sys.exit()                    
+
+    def set_player_mode(self, player_mode):
+        """Set the number of players"""
+        self.player_mode = player_mode 
+        
+    def get_player_mode(self):
+        """Get the number of players"""
+        return self.player_mode  
+        
+        
 # V of MVC                
 class BoardView:
     """Class responsible for visually representing the game state"""
@@ -259,24 +344,19 @@ class BoardView:
 # Controller        
 if __name__ == "__main__":
     
-    # Multiplayer Setup
+    # Initialize pygame
+    pygame.init()    
+
+    # Create a window
+    window = [575, 575]    
     
-    # Prompt user for number of players
-    while True:
-        num_players = input("Please enter the number of players:\n")
-        
-        try:
-            num_players = int(num_players)
-            
-        except ValueError:
-            print("Number of players must be an integer\n")
-            continue
-        
-        if num_players > 0:
-            break
-        
-        else:
-            print("Minimum of 1 player required to play the game\n")
+    # Set the pygame screen to be displayed in window
+    screen = pygame.display.set_mode(window)    
+         
+    # Multiplayer Setup
+    font = pygame.font.SysFont("arialblack", 25)  
+    main_menu_view = MainMenuView() 
+    num_players = main_menu_view.get_player_mode()
           
     # Initialize the player list      
     player_list = {}
@@ -291,21 +371,12 @@ if __name__ == "__main__":
         player_list[player] = color
         print(player, player_list[player])
         
-
-    # Initialize pygame
-    pygame.init()
-    
-    # Create a window
-    window = [575, 575]
-    
-    # Set the pygame screen to be displayed in window
-    screen = pygame.display.set_mode(window)
     
     # Change the title of the window
     pygame.display.set_caption("Connect 5")
 
     # Create a new game model with a 19x19 grid
-    model = BoardModel(19, 19)      
+    model = BoardModel(19, 19)
 
     # Create a new game view with previous game model
     view = BoardView(model)
