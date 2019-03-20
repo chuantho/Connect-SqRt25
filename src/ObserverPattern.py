@@ -10,7 +10,7 @@ class Observer:
 
         Raises a NotImplementedError if update() is not implemented by a subclass.
         """
-        raise NotImplementedError("Update method is not implmented.")
+        raise NotImplementedError("Update method is not implemented.")
 
 class Observable:
     """
@@ -21,23 +21,19 @@ class Observable:
     """
 
     def __init__(self):
-        """Initialize Observer object with no observers.
-        """
+        """Initialize Observer object with no observers."""
         self.observers = []
 
     def attach(self, o: Observer):
-        """Add Observer o to the list of observers.
-        """
+        """Add Observer o to the list of observers."""
         self.observers.append(o)
 
     def detach(self, o: Observer):
-        """Remove Observer o from the list of observers.
-        """
+        """Remove Observer o from the list of observers."""
         self.observers.remove(o)
 
 
     def notify_observers(self):
-        """Update all observers.
-        """
+        """Update all observers."""
         for observer in self.observers:
             observer.update()

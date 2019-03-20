@@ -6,3 +6,5 @@
 .idea/vcs.xml
 .idea/workspace.xml
 __pycache__/ObserverPattern.cpython-37.pyc
+src/.DS_Store
+.DS_Store
