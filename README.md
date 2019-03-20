@@ -53,18 +53,18 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 #### Option 1: Clone the repo
 Open terminal
 The following commands will install Connect SQRT(25) on your Desktop. You can replace ```Desktop``` with any other directory you choose to install the game directory in.
-```bash
+```bash```
 $ cd ~/Desktop
 $ git clone https://github.com/chuantho/Connect-SqRt25.git
 $ cd Connect-SqRt25/
 $ python3 Connect5.py
-#### Option 2: Download the zipped file
+### Option 2: Download the zipped file
 * Download the zipped file by clicking here.
 * Unzip the file with the built-in unarchiver.
 * Open ```Connect5.py``` in your favourite Python IDE.
 * Run ```Connect5.py``` in your favourite Python IDE. 
 
-## How to Play
+### How to Play
 * The user selects either the 2 player or 2+ players option for the number of players that will play the game. 
     <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
 * The game is initialized with an empty grid.                            
