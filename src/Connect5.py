@@ -14,14 +14,13 @@ RED = (255, 0, 0)
 BLUE = (0, 255, 0)
 GREEN = (0, 0, 255)
 
-
 # M of MVC
 class BoardModel:
-    """Class responsible for storing the game state."""
+    """Class responsible for storing the game state"""
     
     
     def __init__(self, num_rows, num_columns):
-        """Initialize an empty game board with given rows and columns."""
+        """Initialize an empty game board with given rows and columns"""
         
         self.rows = num_rows
         self.columns = num_columns
@@ -35,21 +34,21 @@ class BoardModel:
     
         
     def get_board(self):
-        """Return the current board state."""
+        """Return the current board state"""
         return self.board
     
     
     def get_rows(self):
-        """Return the number of rows of the game board."""
+        """Return the number of rows of the game board"""
         return self.rows
     
         
     def get_columns(self):
-        """Return the number of columns of the game board."""
+        """Return the number of columns of the game board"""
         return self.columns
     
     def is_claimed(self, player, row, column):
-        """Check if a given tile is claimed by the given player."""
+        """Check if a given tile is claimed by the given palyer"""
         
         if self.board[row][column] == player:
             return True
@@ -58,7 +57,7 @@ class BoardModel:
         
                    
     def is_won(self, player, row, column):
-        """Check if a given player has won the game."""
+        """Check if a given player has won the game"""
         
     # Check if player won horizontally
         
@@ -161,7 +160,7 @@ class BoardModel:
                     
     # Check if player won diagonally (2)
             
-        # Check top right
+        # Check topright
         topright = 0
         
         for i in range(1, 5):
@@ -173,7 +172,7 @@ class BoardModel:
 
         #//print("topright:", topright)
         
-        # Check bottom left
+        # Check bottomleft
         bottomleft = 0
             
         for i in range(1, 5):
@@ -199,10 +198,10 @@ class BoardModel:
                
 # V of MVC                
 class BoardView:
-    """Class responsible for visually representing the game state."""
+    """Class responsible for visually representing the game state"""
     
     def __init__(self, model): 
-        """Initialize a graphical representation of the given game board."""
+        """Initialize a graphical representation of the given game board"""
         self.model = model
         self.tile_size = 25     # Default tile size
         self.tile_margin = 5    # Default tile margin
@@ -211,23 +210,23 @@ class BoardView:
         self.update()           
     
     def set_tile_size(self, size):
-        """Set the size of a tile for graphical representation."""
+        """Set the size of a tile for graphical representation"""
         self.tile_size = size
         
     def set_tile_margin(self, margin):
-        """Set the size between tiles for graphical representation."""
+        """Set the size between tiles for graphical representation"""
         self.tile_margin = margin
         
     def get_tile_size(self):
-        """Return the size of a tile for graphical representation."""
+        """Return the size of a tile for graphical representation"""
         return self.tile_size
     
     def get_tile_margin(self):
-        """Return the size between tiles for graphical representation."""
+        """Return the size between tiles for graphical representation"""
         return self.tile_margin
     
     def update(self):
-        """Update the graphical representation of the game."""
+        """Update the graphical representation of the game"""
         
         # Reset the screen
         screen.fill(BLACK)
@@ -239,27 +238,25 @@ class BoardView:
                 if self.model.get_board()[row][column] == 0:
                     color = WHITE
                     
-                elif self.model.get_board()[row][column] == 1:
-                    # r = random.randint(0, 255)
-                    # g = random.randint(0, 255)
-                    # b = random.randint(0, 255)
-                    # color = (r, g, b)
-                    color = RED
+                else :   
+                    for player in range(1, num_players + 1):
+                        if self.model.get_board()[row][column] == player:
+                            color = player_list.get(player)
                 
                 # Find the x coordinate of the tile
-                x_coord = self.tile_margin + ((self.tile_size + self.tile_margin)*column)
+                x_coord = self.tile_margin + ((self.tile_size + self.tile_margin) * column)
                 
                 # Find the y coordinate of the tile
-                y_coord = self.tile_margin + ((self.tile_size + self.tile_margin)*row)
+                y_coord = self.tile_margin + ((self.tile_size + self.tile_margin) * row)
                 
                 # Draw square tiles
                 pygame.draw.rect(screen, color, [x_coord, y_coord, self.tile_size, self.tile_size])
          
         # Update pygame display
         pygame.display.flip()
-
-
-# Controller
+        
+        
+# Controller        
 if __name__ == "__main__":
     
     # Multiplayer Setup
@@ -313,7 +310,7 @@ if __name__ == "__main__":
     # Create a new game view with previous game model
     view = BoardView(model)
     
-    player = 1  # Placeholder for player
+    player = 1 # Placeholder for player
     is_done = False
     
     while not is_done:
@@ -341,7 +338,7 @@ if __name__ == "__main__":
                     board[row][column] = player
                     print("Tile" + "[" + str(row) + "][" + str(column) + "] " + "claimed by Player " + str(player))
                     
-                    # Update board
+                    #Update board
                     view.update()
                     
                     # Check if winning move
@@ -356,18 +353,19 @@ if __name__ == "__main__":
                     
                 # If tile is claimed   
                 else:
-                    print("Tile"
-                          + "[" + str(row) + "]"
-                          + "[" + str(column) + "] "
-                          + "already claimed by Player "
-                          + str(board[row][column]))
-
-        if event.type == pygame.QUIT:
-            # Exit loop and terminate game
-            is_done = True
+                    print("Tile" + 
+                          "[" + str(row) + "]" + 
+                          "[" + str(column) + "] " 
+                          + "already claimed by Player " 
+                          + str(board[row][column]))                
+                
+        
+            elif event.type == pygame.QUIT:
+                # Exit loop and terminate game
+                is_done = True
                 
     # Terminate pygame
     pygame.quit()
     
     # Pause game view before terminating
-    time.sleep(3)
+    time.sleep(3)    
