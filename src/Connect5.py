@@ -208,7 +208,7 @@ class MainMenuView:
         titlefont = pygame.font.SysFont("tahoma", 35)
         window = [575,575]
         pygame.display.set_caption ("Connect5")        
-        background = pygame.image.load("gomuku.jpg")
+        background = pygame.image.load("assets/gomuku.jpg")
         background= pygame.transform.scale(background, (575,575))
         screen = pygame.display.set_mode(window)
         screen.blit(background, (0,0))
