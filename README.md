@@ -54,14 +54,15 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 
 
 ## How to Play
-* The user selects either the 2 player or 2+ players option for the number of players that will play the game.
-* The game is initialized with an empty grid.
-* Each players is assigned a different color.
-* The players click on certain cells of the grid board to fill it up with different colors. The grid cell color cannot change once it is assigned a color other than white.
-* The player which gets 5 of the same colored cells in any direction (horizontal, vertical, or diagonal) wins the game.
-
-### Screenshots
-<TODO>
+* The user selects either the 2 player or 2+ players option for the number of players that will play the game. 
+    <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
+* The game is initialized with an empty grid.                            
+    <img width="130" alt="EmptyGrid" src="https://user-images.githubusercontent.com/47638467/54714607-b7bdfc80-4b27-11e9-92d9-3beb86d3d28c.png">
+* Each players is assigned a different color.                     
+* The players click on certain cells of the grid board to fill it up with different colors. The grid cell color cannot change once it is assigned a color other than white.                    
+    <img width="130" alt="ManyPlayers" src="https://user-images.githubusercontent.com/47638467/54714741-1d11ed80-4b28-11e9-9d62-898463ac6640.png">
+* The player which gets 5 of the same colored cells in any direction (horizontal, vertical, or diagonal) wins the game.      
+    <img width="130" alt="WinMove" src="https://user-images.githubusercontent.com/47638467/54714723-0ec3d180-4b28-11e9-9191-2686984959af.png">
 
 ## Game Features
 * 2+ players option
