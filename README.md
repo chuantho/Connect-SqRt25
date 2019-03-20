@@ -49,8 +49,21 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 * Unzip the file via 7-Zip, WinRAR, or any other zip files software.
 * In the unzipped file, run the executable named ```Connect5```.
 
-#### For ```MAC OS X```
-<TODO>
+### For ```MAC OS X```
+#### Option 1: Clone the repo
+Open terminal
+The following commands will install Connect SQRT(25) on your Desktop. You can replace ```Desktop``` with any other directory you choose to install the game directory in.
+$ cd ~/Desktop
+$ git clone https://github.com/chuantho/Connect-SqRt25.git
+$ cd Connect-SqRt25/
+$ python3 Connect5.py
+#### Option 2: Download the zipped file
+* Download the zipped file by clicking here.
+* Unzip the file with the built-in unarchiver.
+* Open the ```Connect5.py``` in your favourite Python IDE.
+* Run ```Connect5.py``` in your favourite Python IDE.
+
+
 
 
 ## How to Play
