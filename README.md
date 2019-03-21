@@ -104,6 +104,7 @@ Any images used in the application is included in the ```src/assets``` directory
 
 ### Major Functions
 * ```Model.is_won(player, row, column)``` : Checks if the ```player``` won the game by looping over every possible direction (horizontal, vertical, diagonal) from the tile at position ```board[row][column]```. Returns ```True``` if the player has claimed 5 or more consecutive tiles. 
+* ```View.update()``` : Traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color``` to represent on the graphical interface.
 * ```Controller.play()``` : Loops over the ```mouse_events``` until a player wins the game or quits. If the player clicks on an unclaimed tile, the tile is claimed by the player and the tile is assigned their ```player_number``` in the ```Model```. After every move, ```View.update()``` is called to update the graphical representation and ```Model.is_won()``` is called to check if the game is won. If the game is won, ```View``` plays a special win animation and the game is done. If the game is not won, the game continues with the next player. 
 
 ### Flow of execution
@@ -119,6 +120,9 @@ Any images used in the application is included in the ```src/assets``` directory
 * Player versus computer variation
 	* Add a one player option in the start menu to allow a single player to play with a computer. We are representing a 19x19 board in our game using a list of lists in ```BoardModel``` class located in ```src/Connect5.py```. You can implement your own AI to play with the player by extracting the board from ```BoardModel``` class using the ```get_board()``` method.
 
+* Implement GameRound
+
+* Implement GameTimer
 
 
 ## Built With
