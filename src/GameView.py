@@ -25,21 +25,21 @@ class View:
         self.screen = pygame.display.set_mode(window)         
                      
         self.model = model
-        self.tile_size = 25     # Default tile size
-        self.tile_margin = 5    # Default tile margin
+        self.tile_size = 25     # Default tile side length
+        self.tile_margin = 5    # Default space between tiles
         
         self.player_list = model.get_player_list()
         self.num_players = model.get_num_players()
         
-        # Initialize the graphical representation
+        # Initialize the graphical interace
         self.update()           
         
     def get_tile_size(self):
-        """Return the size of a tile for graphical representation"""
+        """Return the size of a tile on the graphical interface"""
         return self.tile_size
     
     def get_tile_margin(self):
-        """Return the size between tiles for graphical representation"""
+        """Return the size between tiles on the graphical interface"""
         return self.tile_margin
     
     def get_model(self):
@@ -58,10 +58,13 @@ class View:
                 # Check if empty tile
                 if self.model.get_board()[row][column] == 0:
                     color = WHITE
-                    
+                
+                # Check if claimed tile    
                 else :   
                     for player in range(1, self.num_players + 1):
+                        # Find which player claimed the tile
                         if self.model.get_board()[row][column] == player:
+                            # Convert tile from player number to color using player_list
                             color = self.player_list.get(player)
                 
                 # Find the x coordinate of the tile
@@ -72,11 +75,11 @@ class View:
                 y_coord = self.tile_margin + (
                     (self.tile_size + self.tile_margin) * row)
                 
-                # Draw square tiles
+                # Draw tiles
                 pygame.draw.rect(self.screen, color, 
                     [x_coord, y_coord, self.tile_size, self.tile_size])
          
-        # Update pygame display
+        # Update graphical interface
         pygame.display.flip()
         
     def win_animation(self, winning_player):
@@ -110,9 +113,9 @@ class View:
                 y_coord = self.tile_margin + (
                     (self.tile_size + self.tile_margin) * row)
                 
-                # Draw square tiles
+                # Draw tiles
                 pygame.draw.rect(self.screen, color, 
                     [x_coord, y_coord, self.tile_size, self.tile_size])
          
-        # Update pygame display
+        # Update graphical interface
         pygame.display.flip()   

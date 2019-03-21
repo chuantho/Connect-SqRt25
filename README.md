@@ -83,7 +83,8 @@ $ python3 Connect5.py ## This command will launch the game.
  <img width="130" alt="EmptyGrid" src="https://user-images.githubusercontent.com/47638467/54714607-b7bdfc80-4b27-11e9-92d9-3beb86d3d28c.png">
 <img width="130" alt="ManyPlayers" src="https://user-images.githubusercontent.com/47638467/54714741-1d11ed80-4b28-11e9-9d62-898463ac6640.png">
   <img width="130" alt="WinMove" src="https://user-images.githubusercontent.com/47638467/54714723-0ec3d180-4b28-11e9-9191-2686984959af.png".>
-## Game Features
+
+### Game Features
 * Player selection menu
 * Single-player option
 * Multi-player option (2-8 players)

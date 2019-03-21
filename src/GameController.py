@@ -30,18 +30,16 @@ class Controller:
         current_player = 1
         pygame.display.set_caption("Player {}'s turn".format(current_player))
         
-        # Start playing
+        # Play until a player wins
         is_won = False
-        
         while not is_won:
             
+            # Loop through mouse clicks
             for event in pygame.event.get():
-            
                 if event.type == pygame.MOUSEBUTTONDOWN:
-    
-                    click = pygame.mouse.get_pos()
                     
                     # Find board tile from click coordinates
+                    click = pygame.mouse.get_pos()
                     row = (click[1] // (self.tile_size + self.tile_margin))
                     column = (click[0] // (self.tile_size + self.tile_margin))
                     
@@ -63,7 +61,7 @@ class Controller:
                             # Display win animation
                             self.view.win_animation(current_player)
 
-                            # Update win condition                  
+                            # Stop playing                 
                             is_won = True
   
                         # Continue game if no winning move

@@ -26,8 +26,10 @@ class Menu:
         
         # Initialize menu window
         window = [420,750]
-        pygame.display.set_caption ("Pick a number of players and click 'START PLAYING'")  
         screen = pygame.display.set_mode(window)
+        
+        # Display instructions
+        pygame.display.set_caption ("Pick a number of players and click 'START PLAYING'")  
         
         
         # Import background image
@@ -76,10 +78,10 @@ class Menu:
         # Update menu view
         pygame.display.flip()        
 
-        menu = True
+        start = False
         drag = False
         
-        while menu:
+        while not start:
             
             for event in pygame.event.get():
                 
@@ -95,14 +97,17 @@ class Menu:
                     #  Drag
                     elif (event.type == pygame.MOUSEMOTION) and (drag == True):
                         
+                        # Update slider box
                         pygame.draw.rect(screen, GREY, Rect(125, 600, 220, 40))
                         
+                        # Move slider
                         if (x >= 125 and x <= 130):
                             pygame.draw.rect(screen, BLACK, Rect(x, 600, 10, 40))                             
                         elif (x <= 345 and x >= 340):
+                            # Add padding to prevent slider from going outside slider box
                             pygame.draw.rect(screen, BLACK, Rect(x - 10, 600, 10, 40))    
-                         
                         else:
+                            # Add padding to prevent slider from going outside slider box
                             pygame.draw.rect(screen, BLACK, Rect(x - 5, 600, 10, 40))    
                             
                         # Update player selection
@@ -114,6 +119,7 @@ class Menu:
                             str(self.get_player_select()), 
                             1, BLACK), (365, 600)) 
                         
+                        # Update menu view
                         pygame.display.flip()
                 
                     # End drag
@@ -123,19 +129,20 @@ class Menu:
                 # Start button      
                 elif (x >= 115 and x <= 325) and (y >= 695 and y <= 730):
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        menu = False
+                        start = True
                         pygame.display.quit()
-                          
+                
+                # If user quits before starting game       
                 else:
                     if event.type == pygame.QUIT:
                         # Terminate program
                         sys.exit() 
 
     def set_player_select(self, player_select):
-        """Set the number of players."""
+        """Set the number of players selected."""
         self.player_select = player_select 
         
         
     def get_player_select(self):
-        """Get the number of players"""
+        """Get the number of players selected."""
         return self.player_select 
