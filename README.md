@@ -53,16 +53,30 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 * Unzip the file via 7-Zip, WinRAR, or any other zip files software.
 * In the unzipped file, run the executable named ```Connect5```.
 
-#### For ```MAC OS X```
-<TODO>
+### For ```MAC OS X```
+#### Option 1: Clone the repo
+Open Terminal
+The following commands will install Connect SQRT(25) on your Desktop. You can replace ```Desktop``` with any other directory you choose to install the game directory in.
+```bash
+$ cd ~/Desktop
+$ git clone https://github.com/chuantho/Connect-SqRt25.git
+$ cd Connect-SqRt25/
+$ python3 Connect5.py ## This command will launch the game.
+```
 
+#### Option 2: Download the zipped file
+* Download the zipped file by clicking here.
+* Unzip the file.
+* Open ```Connect5.py``` in your favourite IDE.
+* Run ```Connect5.py``` in your favourite IDE.
 
 ## How to Play
-* The user selects either the 2 player or 2+ players option for the number of players that will play the game.
-* The game is initialized with an empty grid.
-* Each players is assigned a different color.
-* The players click on certain cells of the grid board to fill it up with different colors. The grid cell color cannot change once it is assigned a color other than white.
-* The player which gets 5 of the same colored cells in any direction (horizontal, vertical, or diagonal) wins the game.
+* The user is prompted with a player selection menu.
+* The user selects between 1 and 8 players and clicks ```Start playing``` to play.
+* The game is initialized with an empty 19 x 19 board.
+* Each players is assigned a random color.
+* The players click on certain tiles of the board to claim it and replace it with a tile of their color. * Note: a tile cannot be changed once it is claimed.
+* The player which claims 5 tiles in any direction (horizontal, vertical, or diagonal) wins the game.
 
 ### Screenshots
  <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
@@ -70,23 +84,45 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 <img width="130" alt="ManyPlayers" src="https://user-images.githubusercontent.com/47638467/54714741-1d11ed80-4b28-11e9-9d62-898463ac6640.png">
   <img width="130" alt="WinMove" src="https://user-images.githubusercontent.com/47638467/54714723-0ec3d180-4b28-11e9-9191-2686984959af.png".>
 ## Game Features
-* Polished UI
-* 2+ players option
+* Player selection menu
+* Single-player option
+* Multi-player option (2-8 players)
+* In-game prompts and messages
+* Win animations
 
 ## Documentation
 
 ### Directory Structure
-All of the source code files are placed in the ```src``` directory. Any images used in the application is included in the ```src/assets``` directory.
+All of the source code files are placed in the ```src``` directory. 
+Any images used in the application is included in the ```src/assets``` directory.
 
-### Major Classes and Functions
-* Before entering the main game loop, a ```MenuView``` object is initialized in ```Connect5.py``` to determine the number of players that will be playing the game.
-* Next, the ```BoardModel``` and ```BoardView``` objects are initialized. The ```BoardModel```class is responsible for setting up the game board and determining if a player has won through its method ```is_won(player, row, column)```. The ```BoardView``` class is responsible for updating the GUI seen by the user, so it takes a ```BoardModel``` object in its constructor to reflect any changes that occur within the ```BoardModel``` class. 
-* The game loop in ```Connect5.py``` acts as the controller for our MVC design. It is responsible for extracting the click events from the user to determine where the next stone should be placed within the grid. The job of the game loop is to update the ```BoardView``` object on each user click event. The game loop also calls  the ```is_won(player, row, column)``` method on the ```BoardModel``` object to determine if a player has won the game. The loop terminates if a player wins or the game window is closed.
+### Major Classes 
+* GameModel is responsible for storing the game state including the board, tokens and list of players and colors.
+* GameView is responsible for graphically representing the game state using the GameModel.
+* GameController is responsible for taking user input from the GameView and modifying the GameModel.
+* GameMenu is responsible for showing the menu, allowing player selection and starting the game.
+
+### Major Functions
+* ```Model.is_won(player, row, column)``` : Checks if the ```player``` won the game by looping over every possible direction (horizontal, vertical, diagonal) from the tile at position ```board[row][column]```. Returns ```True``` if the player has claimed 5 or more consecutive tiles. 
+* ```View.update()``` : Traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color``` to represent on the graphical interface.
+* ```Controller.play()``` : Loops over the ```mouse_events``` until a player wins the game or quits. If the player clicks on an unclaimed tile, the tile is claimed by the player and the tile is assigned their ```player_number``` in the ```Model```. After every move, ```View.update()``` is called to update the graphical representation and ```Model.is_won()``` is called to check if the game is won. If the game is won, ```View``` plays a special win animation and the game is done. If the game is not won, the game continues with the next player. 
+
+### Flow of execution
+1. The ```Connect5``` executable is run
+2. A ```Menu``` object is initialized. The ```Menu``` initializes a graphical interface to allow the user to select the number of players for the game.
+3. ```Connect5``` creates players according to the number of players selected in ```Menu```. Each player is assigned a random color and is added to the ```player_list``` dictionary which maps each ```player_number``` to a ```color```.
+4. A ```Model``` object is initialized. The ```Model``` takes the ```player_list``` dictionary and stores it. The ```Model``` initializes the empty ```board```.
+5. A ```View``` object is initialized. The ```View``` takes a ```Model``` object in its constructor to observe any changes that occur in the ```board```. The ```View``` initializes a graphical interface and displays the empty ```board``` in ```Model```. When the ```Model``` changes, ```View``` updates itself with its ```update()``` method which traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color```, to represent on the ```View```.
+6. A ```Controller``` object is initialized. The ```Controller``` takes a ```View``` object in its constructor to extract ```mouse_events``` when the user clicks on the ```View```. 
+7. The ```Controller.play()``` method is called and the game begins.  The ```current_player``` is initialized to the first player in the ```player_list```. The ```play()``` loop continues until ```current_player``` wins or quits. ```current_player``` changes to the next player in ```player_list``` after every move.
 
 ### Extend Our Game
 * Player versus computer variation
 	* Add a one player option in the start menu to allow a single player to play with a computer. We are representing a 19x19 board in our game using a list of lists in ```BoardModel``` class located in ```src/Connect5.py```. You can implement your own AI to play with the player by extracting the board from ```BoardModel``` class using the ```get_board()``` method.
 
+* Implement GameRound
+
+* Implement GameTimer
 
 
 ## Built With

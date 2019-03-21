@@ -9,7 +9,7 @@ BLACK = (0, 0, 0)
 
 
 class View:
-    """Class responsible for visually representing the game state stored in Model."""
+    """Class responsible for graphically representing the game state stored in Model."""
     
     def __init__(self, model):
         """Initialize a graphical representation of the given game board stored in Model."""
