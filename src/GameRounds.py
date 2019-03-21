@@ -26,4 +26,3 @@ class Rounds:
                 self.view.model = BoardModel(19, 19)
                 self.view.update()
                 count = count + 1
-

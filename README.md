@@ -99,7 +99,7 @@ All of the source code files are placed in the ```src``` directory. Any images u
 * **Shubham Sharma** - [shub-sharma](https://github.com/shub-sharma)
 * **Alexandre Gagne** - [salemalex11](https://github.com/salemalex11)
 * **Anthony Chu** - [chuantho](https://github.com/chuantho)
-* **Hameza Abubeker**
+* **Hameza Abubeker** - [Hameza-A](https://github.com/Hameza-A)
 * **Jason Chabra** -[JasonChabra](https://github.com/JasonChabra)
 
 ## License

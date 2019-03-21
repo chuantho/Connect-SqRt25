@@ -1,7 +1,6 @@
 class Model:
     """Class responsible for storing the game state."""
     
-    
     def __init__(self, num_players, player_list):
         """Initialize an empty game board with given rows and columns."""
         

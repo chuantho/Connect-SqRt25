@@ -1,6 +1,7 @@
 import datetime;
 import time;
 
+
 class GameTimer():
     """Create GameTimer to calculate player's turns as well as the match time."""
     def __init__(self):
@@ -31,5 +32,3 @@ class GameTimer():
             time.sleep(1);
         self.stop = datetime.datetime.now()
         return True;
-        
-
