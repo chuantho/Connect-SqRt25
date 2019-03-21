@@ -84,10 +84,11 @@ $ python3 Connect5.py ## This command will launch the game.
 * The game continues until a player wins or quits the game.
 
 ### Screenshots
- <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
- <img width="130" alt="EmptyGrid" src="https://user-images.githubusercontent.com/47638467/54714607-b7bdfc80-4b27-11e9-92d9-3beb86d3d28c.png">
+<img width="130" alt="Menu" src="https://user-images.githubusercontent.com/47638467/54785474-b7dbfc00-4bfc-11e9-8010-72b3789f3042.png">
+<img width="130" alt="EmptyGrid" src="https://user-images.githubusercontent.com/47638467/54714607-b7bdfc80-4b27-11e9-92d9-3beb86d3d28c.png">
 <img width="130" alt="ManyPlayers" src="https://user-images.githubusercontent.com/47638467/54714741-1d11ed80-4b28-11e9-9d62-898463ac6640.png">
-  <img width="130" alt="WinMove" src="https://user-images.githubusercontent.com/47638467/54714723-0ec3d180-4b28-11e9-9191-2686984959af.png".>
+<img width="130" alt="WinMove" src="https://user-images.githubusercontent.com/47638467/54714723-0ec3d180-4b28-11e9-9191-2686984959af.png".>
+<img width="130" alt="Win animation" src="https://user-images.githubusercontent.com/47638467/54785479-b90d2900-4bfc-11e9-9b1f-8ae64bd25ea3.png">
 
 ### Game Features
 * Player selection menu
