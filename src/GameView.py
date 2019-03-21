@@ -1,6 +1,7 @@
 # Define imports
 import pygame
 from pygame import *
+import time
 
 # Define colors
 WHITE = (255, 255, 255)
@@ -19,10 +20,7 @@ class View:
         
         # Create a window
         window = [575, 575]       
-             
-        # Change the title of the window
-        pygame.display.set_caption ("Connect Sqrt(25)")  
-        
+
         # Set the pygame screen to be displayed in window
         self.screen = pygame.display.set_mode(window)         
                      
@@ -80,3 +78,41 @@ class View:
          
         # Update pygame display
         pygame.display.flip()
+        
+    def win_animation(self, winning_player):
+        """Display a special animation when a player wins the game."""
+        
+        # Reset the screen
+        self.screen.fill(BLACK)
+        
+        for row in range(19):
+            for column in range(19):
+                
+                # Replace empty tiles with winning player's color
+                if self.model.get_board()[row][column] == 0:
+                    color = self.player_list.get(winning_player)
+                  
+                # Replace winning player's tiles with black tiles  
+                elif self.model.get_board()[row][column] == winning_player:
+                    color = BLACK
+                  
+                # Leave other players' tiles unchanged  
+                else :   
+                    for player in range(1, self.num_players + 1):
+                        if self.model.get_board()[row][column] == player:
+                            color = self.player_list.get(player)
+                
+                # Find the x coordinate of the tile
+                x_coord = self.tile_margin + (
+                    (self.tile_size + self.tile_margin) * column)
+                
+                # Find the y coordinate of the tile
+                y_coord = self.tile_margin + (
+                    (self.tile_size + self.tile_margin) * row)
+                
+                # Draw square tiles
+                pygame.draw.rect(self.screen, color, 
+                    [x_coord, y_coord, self.tile_size, self.tile_size])
+         
+        # Update pygame display
+        pygame.display.flip()   

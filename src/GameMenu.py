@@ -26,7 +26,7 @@ class Menu:
         
         # Initialize menu window
         window = [420,750]
-        pygame.display.set_caption ("Connect Sqrt(25)")  
+        pygame.display.set_caption ("Pick a number of players and click 'START PLAYING'")  
         screen = pygame.display.set_mode(window)
         
         
@@ -126,7 +126,7 @@ class Menu:
                         menu = False
                         pygame.display.quit()
                           
-                else :
+                else:
                     if event.type == pygame.QUIT:
                         # Terminate program
                         sys.exit() 

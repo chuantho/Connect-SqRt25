@@ -61,7 +61,6 @@ class Model:
         
         # Check if horizontal win
         if ((left + right + 1) >= 5):
-            print("Player", str(player), " won the game!\n")
             return True
             
     # Check vertical
@@ -86,7 +85,6 @@ class Model:
         
         # Check if vertical win  
         if ((top + bottom + 1) >= 5):
-            print("Player", str(player), " won the game!\n")
             return True
 
     # Check diagonal (1)
@@ -110,8 +108,7 @@ class Model:
                     break                
         
         # Check if won      
-        if ((topleft + bottomright + 1) >= 5):
-            print("Player", str(player), " won the game!\n")  
+        if ((topleft + bottomright + 1) >= 5): 
             return True 
                     
     # Check diagonal (2)
@@ -136,7 +133,6 @@ class Model:
         
         # Check if won       
         if ((topright + bottomleft + 1) >= 5):
-            print("Player", str(player), " won the game!\n") 
             return True
 
         return False

@@ -2,6 +2,7 @@
 import pygame
 from pygame import *
 import sys
+import time
 
 
 class Controller:
@@ -25,8 +26,11 @@ class Controller:
         # Initialize pygame
         pygame.init()
         
-        # Start playing with Player 1
-        player = 1
+        # Start with Player 1
+        current_player = 1
+        pygame.display.set_caption("Player {}'s turn".format(current_player))
+        
+        # Start playing
         game = True
         
         while game:
@@ -45,33 +49,34 @@ class Controller:
                     if self.board[row][column] == 0:
                         
                         # Claim tile
-                        self.board[row][column] = player
-                        print("Tile" + 
-                              "[" + str(row) + "]" + 
-                              "[" + str(column) + "] " + 
-                              "claimed by Player " + 
-                              str(player))
+                        self.board[row][column] = current_player
                         
-                        #Update board
+                        # Update board
                         self.view.update()
                         
                         # Check if winning move
-                        if self.model.is_won(player, row, column):
-                            game = False
+                        if self.model.is_won(current_player, row, column):
+
+                            # Display win message
+                            pygame.display.set_caption("Player {} won the game!".format(current_player))                           
                             
-                        # Switch players
-                        player += 1
-                        if player > self.num_players:
-                            player = 1
-                        
-                    # If tile is claimed   
-                    else:
-                        print("Tile" + 
-                              "[" + str(row) + "]" + 
-                              "[" + str(column) + "] " +
-                              "already claimed by Player " +
-                              str(self.board[row][column]))                
-                
+                            # Display win animation
+                            self.view.win_animation(current_player)
+
+                            # End game                   
+                            game = False
+  
+                        # Continue game if no winning move
+                        else:    
+                            
+                            # Switch players
+                            current_player += 1
+                            if current_player > self.num_players:
+                                current_player = 1
+                                
+                            # Display next player's turn message
+                            pygame.display.set_caption("Player {}'s turn".format(current_player))
+
                 # If player quits    
                 elif event.type == pygame.QUIT:
                     # Terminate program
@@ -81,4 +86,4 @@ class Controller:
         pygame.quit()
         
         # Pause game view before terminating
-        time.sleep(3)           
+        time.sleep(5)           
