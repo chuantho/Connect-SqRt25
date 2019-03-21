@@ -120,7 +120,8 @@ Any images used in the application is included in the ```src/assets``` directory
 * Player versus computer variation
 	* Add a one player option in the start menu to allow a single player to play with a computer. We are representing a 19x19 board in our game using a list of lists in ```BoardModel``` class located in ```src/Connect5.py```. You can implement your own AI to play with the player by extracting the board from ```BoardModel``` class using the ```get_board()``` method.
 
-* Implement GameRound
+* Implement GameRounds
+	* Add a rounds option in the start menu to allow the player to choose how many rounds they would like to play the game. Inside of the main of ```src/Connect5.py``` the ```GameRounds``` class would be constructed. The ```View```of the game and the number of rounds chosen in the start menu would be sent as arguments for the newly constructed class. The class would then run the game up to the number of specified rounds.
 
 * Implement GameTimer
 
