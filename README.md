@@ -67,12 +67,6 @@ $ cd Connect-SqRt25/
 $ python3 Connect5.py ## This command will launch the game.
 ```
 
-#### Option 2: Download the zipped file
-* Download the zipped file by clicking here.
-* Unzip the file.
-* Open ```Connect5.py``` in your favourite IDE.
-* Run ```Connect5.py``` in your favourite IDE.
-
 ## How to Play
 * The user is prompted with a player selection menu.
 * The user selects between 1 to 8 players and clicks ```Start playing``` to play.
