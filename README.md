@@ -99,8 +99,10 @@ $ python3 Connect5.py ## This command will launch the game.
 ## Documentation
 
 ### Directory Structure
+The README and LICENSE are placed at the root of the directory.
 All of the source code files are placed in the ```src``` directory. 
-Any images used in the application is included in the ```src/assets``` directory.
+All images used in the application are replaced in the ```src/assets``` directory.
+All game screenshots are placed in the ```screenshots``` directory.
 
 ### Major Classes 
 * GameModel is responsible for storing the game state including the board, tokens and list of players and colors.
