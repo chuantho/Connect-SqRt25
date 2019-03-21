@@ -8,3 +8,8 @@
 __pycache__/ObserverPattern.cpython-37.pyc
 src/.DS_Store
 .DS_Store
+*.pyc
+src/__pycache__/GameView.cpython-37.pyc
+src/__pycache__/GameModel.cpython-37.pyc
+src/__pycache__/GameMenu.cpython-37.pyc
+src/__pycache__/GameController.cpython-37.pyc
