@@ -96,20 +96,24 @@ $ python3 Connect5.py ## This command will launch the game.
 All of the source code files are placed in the ```src``` directory. 
 Any images used in the application is included in the ```src/assets``` directory.
 
-### Major Classes and Functions
-* The game consists of the main ```Connect5``` and 4 helper classes
+### Major Classes 
 * GameModel is responsible for storing the game state including the board, tokens and list of players and colors.
 * GameView is responsible for graphically representing the game state using the GameModel.
 * GameController is responsible for taking user input from the GameView and modifying the GameModel.
 * GameMenu is responsible for showing the menu, allowing player selection and starting the game.
 
-* Flow of execution
-1. When ```Connect5``` is run, a ```Menu``` object is initialized in ```Connect5.py``` to determine the number of players that will be playing the game.
-2. ```Connect5``` creates players according to the number of players selected in ```Menu```. Each player is assigned a random color and is added to the ```player_list``` dictionary which maps each ```player_number``` to a ```color```.
-3. The ```Model``` object is initialized. The ```Model``` takes the ```player_list``` dictionary and stores it. The ```Model``` initializes the empty ```board```.
-4. The ```View``` object is initialized. The ```View``` takes a ```Model``` object in its constructor to observe any changes that occur in the ```board```. The ```View``` initializes a graphical interface and displays the empty ```board``` in ```Model```. When the ```Model``` changes, ```View``` updates itself with its ```update()``` method which traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color```, to represent on the ```View```.
-5. The ```Controller``` object is initialized. The ```Controller``` takes a ```View``` object in its constructor to extract ```mouse_events``` when the user clicks on the ```View```. 
-6. The ```Controller.play()``` method is called and the game begins. The ```Controller``` loops over the ```mouse_events``` until a player wins the game or quits. The ```current_player''' is initialized to the first player in the ```player_list```. If the ```current_player``` clicks on an unclaimed tile, the tile is claimed by the ```current_player``` and the tile is assigned their ```player_number``` in the ```Model```. The ```View``` updates itself with its ```update()``` method which traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color```, to represent on the graphical interface. After every move, the ```Model.is_won()``` method is called and checks if the ```current_player``` won the game by looping over every possible direction (horizontal, vertical, diagonal) and checking if the player has claimed 5 or more tiles in a row. If ```current_player``` wins, ```View.win_animation()``` is called and the game ends. Otherwise, the ```current_player``` changes to the next player in ```player_list```. If the ```current_player``` quits the game, the program is terminated.
+### Major Functions
+* ```Model.is_won(player, row, column)``` : Checks if the ```player``` won the game by looping over every possible direction (horizontal, vertical, diagonal) from the tile at position ```board[row][column]```. Returns ```True``` if the player has claimed 5 or more consecutive tiles. 
+* ```Controller.play()``` : Loops over the ```mouse_events``` until a player wins the game or quits. If the player clicks on an unclaimed tile, the tile is claimed by the player and the tile is assigned their ```player_number``` in the ```Model```. After every move, ```View.update()``` is called to update the graphical representation and ```Model.is_won()``` is called to check if the game is won. If the game is won, ```View``` plays a special win animation and the game is done. If the game is not won, the game continues with the next player. 
+
+### Flow of execution
+1. The ```Connect5``` executable is run
+2. A ```Menu``` object is initialized. The ```Menu``` initializes a graphical interface to allow the user to select the number of players for the game.
+3. ```Connect5``` creates players according to the number of players selected in ```Menu```. Each player is assigned a random color and is added to the ```player_list``` dictionary which maps each ```player_number``` to a ```color```.
+4. A ```Model``` object is initialized. The ```Model``` takes the ```player_list``` dictionary and stores it. The ```Model``` initializes the empty ```board```.
+5. A ```View``` object is initialized. The ```View``` takes a ```Model``` object in its constructor to observe any changes that occur in the ```board```. The ```View``` initializes a graphical interface and displays the empty ```board``` in ```Model```. When the ```Model``` changes, ```View``` updates itself with its ```update()``` method which traverses the ```board``` in ```Model``` to find the claimed tiles and uses the ```player_list``` dictionary in ```Model``` to translate each claimed tile from a ```player_number``` to a ```color```, to represent on the ```View```.
+6. A ```Controller``` object is initialized. The ```Controller``` takes a ```View``` object in its constructor to extract ```mouse_events``` when the user clicks on the ```View```. 
+7. The ```Controller.play()``` method is called and the game begins.  The ```current_player``` is initialized to the first player in the ```player_list```. The ```play()``` loop continues until ```current_player``` wins or quits. ```current_player``` changes to the next player in ```player_list``` after every move.
 
 ### Extend Our Game
 * Player versus computer variation
