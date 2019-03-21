@@ -11,8 +11,7 @@ BLACK = (0, 0, 0)
 class View:
     """Class responsible for graphically representing the game state stored in Model."""
     
-    
-    def __init__(self, model): 
+    def __init__(self, model):
         """Initialize a graphical representation of the given game board stored in Model."""
         
         # Initialize pygame
@@ -43,11 +42,11 @@ class View:
         return self.tile_margin
     
     def get_model(self):
-        """Return the GameModel used by GameView for graphical representation"""
+        """Return the GameModel used by GameView for graphical representation."""
         return self.model
     
     def update(self):
-        """Update the graphical representation of the game"""
+        """Update the graphical representation of the game."""
         
         # Reset the screen
         self.screen.fill(BLACK)
@@ -100,7 +99,7 @@ class View:
                     color = BLACK
                   
                 # Leave other players' tiles unchanged  
-                else :   
+                else:
                     for player in range(1, self.num_players + 1):
                         if self.model.get_board()[row][column] == player:
                             color = self.player_list.get(player)

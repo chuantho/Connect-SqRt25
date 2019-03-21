@@ -1,7 +1,9 @@
 
 # Connect SQRT(25)
 
-Connect SQRT(25), based on Gomoku, is a two player japanese board game played on a 19x19 board. Players alternate by placing a stone on the board. The goal of the game is to create a chain of 5 stones in any direction (horizontal, vertical, or diagonal).
+Connect SQRT(25), based on the japanese game Gomoku, is a 2+ player board game. 
+Players alternate by claiming tiles on a 19 x 19 board. The goal of the game is to create a chain of 5 tiles in any direction (horizontal, vertical, or diagonal).
+
 
 ## Index
 -  [Prerequisites](https://github.com/chuantho/Connect-SqRt25#prerequisites)
@@ -23,7 +25,8 @@ Connect SQRT(25), based on Gomoku, is a two player japanese board game played on
 - [License](https://github.com/chuantho/Connect-SqRt25#license)
 
 ## Prerequisites
-You must install Python 3.6 and PyGame to play Connect SQRT(25). You can install the prerequisites based on your current system configuration by clicking on the following links:
+You must install Python (3.6 or later) and PyGame to play Connect SQRT(25). 
+You can install the prerequisites based on your current system configuration by clicking on the following links:
 * [Python 3.6](https://www.python.org/downloads/release/python-360/)
 * [PyGame](https://www.pygame.org/)
 
@@ -72,11 +75,13 @@ $ python3 Connect5.py ## This command will launch the game.
 
 ## How to Play
 * The user is prompted with a player selection menu.
-* The user selects between 1 and 8 players and clicks ```Start playing``` to play.
+* The user selects between 1 to 8 players and clicks ```Start playing``` to play.
 * The game is initialized with an empty 19 x 19 board.
-* Each players is assigned a random color.
-* The players click on certain tiles of the board to claim it and replace it with a tile of their color. * Note: a tile cannot be changed once it is claimed.
-* The player which claims 5 tiles in any direction (horizontal, vertical, or diagonal) wins the game.
+* Each player is assigned a random color.
+* On their turn, each player can click on an empty tile of the board to claim it and replace it with a tile of their color. 
+* Once a tile is claimed, it cannot be changed.
+* The first player to claim 5 tiles in any direction (horizontal, vertical, or diagonal) wins the game.
+* The game continues until a player wins or quits the game.
 
 ### Screenshots
  <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
@@ -121,7 +126,8 @@ Any images used in the application is included in the ```src/assets``` directory
 * Player versus computer variation
 	* Add a one player option in the start menu to allow a single player to play with a computer. We are representing a 19x19 board in our game using a list of lists in ```BoardModel``` class located in ```src/Connect5.py```. You can implement your own AI to play with the player by extracting the board from ```BoardModel``` class using the ```get_board()``` method.
 
-* Implement GameRound
+* Implement GameRounds
+	* Add a rounds option in the start menu to allow the player to choose how many rounds they would like to play the game. Inside of the main of ```src/Connect5.py``` the ```GameRounds``` class would be constructed. The ```View```of the game and the number of rounds chosen in the start menu would be sent as arguments for the newly constructed class. The class would then run the game up to the number of specified rounds.
 
 * Implement GameTimer
 
@@ -136,7 +142,7 @@ Any images used in the application is included in the ```src/assets``` directory
 * **Shubham Sharma** - [shub-sharma](https://github.com/shub-sharma)
 * **Alexandre Gagne** - [salemalex11](https://github.com/salemalex11)
 * **Anthony Chu** - [chuantho](https://github.com/chuantho)
-* **Hameza Abubeker**
+* **Hameza Abubeker** - [Hameza-A](https://github.com/Hameza-A)
 * **Jason Chabra** -[JasonChabra](https://github.com/JasonChabra)
 
 ## License

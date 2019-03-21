@@ -84,4 +84,4 @@ class Controller:
         pygame.quit()
         
         # Pause game view before terminating
-        time.sleep(5)           
+        time.sleep(5)
