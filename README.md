@@ -132,7 +132,8 @@ All game screenshots are placed in the ```screenshots``` directory.
 	* Add a rounds option in the start menu to allow the player to choose how many rounds they would like to play the game. Inside of the main of ```src/Connect5.py``` the ```GameRounds``` class would be constructed. The ```View```of the game and the number of rounds chosen in the start menu would be sent as arguments for the newly constructed class. The class would then run the game up to the number of specified rounds.
 
 * Implement GameTimer
-
+	* Add a feature in which two timers are set in place, the first is a timer game timer and the second would be a turn timer. The game timer would be set so the rules are once the timer is up the person that is most favoured to win will be determined as the winner. The timer would be called the main of ```src/Connect5.py``` and the method will be made in ```BoardModel``` class. The turn timer would be set so once the turn timer is up the player is piece is randomly placed. The timer would be called the main of ```src/Connect5.py```, the time count itself would be stored in the main and the method that randomizes will be made in ```BoardModel``` class.
+	* Turn timer is currently created and working but is still placed in separate branch as methodology for this additional feature is causing a delay in the game when tokens are placed. The reason for this is due to the ```sleep``` portion of the function it is making it so if a click is done during the sleep the click will not be registered. Currently working towards improving the methodology.  
 
 ## Built With
 
