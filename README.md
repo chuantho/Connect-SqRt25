@@ -1,7 +1,9 @@
 
 # Connect SQRT(25)
 
-Connect SQRT(25), based on Gomoku, is a two player japanese board game played on a 19x19 board. Players alternate by placing a stone on the board. The goal of the game is to create a chain of 5 stones in any direction (horizontal, vertical, or diagonal).
+Connect SQRT(25), based on the japanese game Gomoku, is a 2+ player board game. 
+Players alternate by claiming tiles on a 19 x 19 board. The goal of the game is to create a chain of 5 tiles in any direction (horizontal, vertical, or diagonal).
+
 
 ## Index
 -  [Prerequisites](https://github.com/chuantho/Connect-SqRt25#prerequisites)
@@ -23,7 +25,8 @@ Connect SQRT(25), based on Gomoku, is a two player japanese board game played on
 - [License](https://github.com/chuantho/Connect-SqRt25#license)
 
 ## Prerequisites
-You must install Python 3.6 and PyGame to play Connect SQRT(25). You can install the prerequisites based on your current system configuration by clicking on the following links:
+You must install Python (3.6 or later) and PyGame to play Connect SQRT(25). 
+You can install the prerequisites based on your current system configuration by clicking on the following links:
 * [Python 3.6](https://www.python.org/downloads/release/python-360/)
 * [PyGame](https://www.pygame.org/)
 
@@ -72,11 +75,13 @@ $ python3 Connect5.py ## This command will launch the game.
 
 ## How to Play
 * The user is prompted with a player selection menu.
-* The user selects between 1 and 8 players and clicks ```Start playing``` to play.
+* The user selects between 1 to 8 players and clicks ```Start playing``` to play.
 * The game is initialized with an empty 19 x 19 board.
-* Each players is assigned a random color.
-* The players click on certain tiles of the board to claim it and replace it with a tile of their color. * Note: a tile cannot be changed once it is claimed.
-* The player which claims 5 tiles in any direction (horizontal, vertical, or diagonal) wins the game.
+* Each player is assigned a random color.
+* On their turn, each player can click on an empty tile of the board to claim it and replace it with a tile of their color. 
+* Once a tile is claimed, it cannot be changed.
+* The first player to claim 5 tiles in any direction (horizontal, vertical, or diagonal) wins the game.
+* The game continues until a player wins or quits the game.
 
 ### Screenshots
  <img width="130" alt="TwoPlayers" src="https://user-images.githubusercontent.com/47638467/54714760-2733ec00-4b28-11e9-82db-3d899d7af731.png">
