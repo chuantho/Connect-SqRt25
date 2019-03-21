@@ -5,19 +5,16 @@ import os
 import time
 import random
 
-# Define board colors
+
+# Define colors
 WHITE = (255, 255, 255)
+GREY = (220, 220, 220)
 BLACK = (0, 0, 0)
 
-# Define  colors
-RED = (255, 0, 0)
-BLUE = (0, 255, 0)
-GREEN = (0, 0, 255)
 
-
-# M of MVC
 class BoardModel:
     """Class responsible for storing the game state."""
+    
     
     def __init__(self, num_rows, num_columns):
         """Initialize an empty game board with given rows and columns."""
@@ -35,19 +32,16 @@ class BoardModel:
         
     def get_board(self):
         """Return the current board state."""
-        
         return self.board
     
     
     def get_rows(self):
         """Return the number of rows of the game board."""
-        
         return self.rows
     
         
     def get_columns(self):
         """Return the number of columns of the game board."""
-        
         return self.columns
     
     def is_claimed(self, player, row, column):
@@ -57,12 +51,12 @@ class BoardModel:
             return True
         else:
             return False
-        
-                   
+          
     def is_won(self, player, row, column):
         """Check if a given player has won the game."""
         
     # Check horizontal
+    
         # Check left
         left = 0
         for i in range(1, 5):
@@ -87,6 +81,7 @@ class BoardModel:
             return True
             
     # Check vertical
+    
         # Check top    
         top = 0
         for i in range(1, 5):
@@ -111,6 +106,7 @@ class BoardModel:
             return True
 
     # Check diagonal (1)
+        
         # Check top left
         topleft = 0
         for i in range(1, 5):
@@ -135,6 +131,7 @@ class BoardModel:
             return True 
                     
     # Check diagonal (2)
+    
         # Check top right
         topright = 0
         for i in range(1, 5):
@@ -164,12 +161,9 @@ class BoardModel:
 class MenuView:
     """Class responsible for visually representing the main menu."""
     
+    
     def __init__(self):
-        """Initalize a graphical representation of the main menu."""
-        
-        # Define menu colors
-        GREY = (220, 220, 220)
-        BLACK = (0, 0, 0)        
+        """Initalize a graphical representation of the main menu."""       
         
         # Define fonts
         TITLE_FONT = pygame.font.SysFont("arial", 65)
@@ -203,17 +197,17 @@ class MenuView:
         # Create slider
         pygame.draw.rect(screen, BLACK, Rect(125, 600, 10, 40))
         
-        # Create slider indicators
-        for i in range(0,8):
-            x = 125 + (i * 30)
-            pygame.draw.rect(screen, GREY, Rect(x, 640, 10, 5))
-            screen.blit(NORMAL_FONT.render(str(i+1), 1, BLACK), (x, 650))
+        # Create slider indicators for player selection
+        for p in range(0,8):
+            separator = 125 + (i * 30)
+            pygame.draw.rect(screen, GREY, Rect(separator, 640, 10, 5))
+            screen.blit(NORMAL_FONT.render(str(p + 1), 1, BLACK), (x, 650))
 
 
-        # Initialize player select to 1
+        # Initialize player selection to 1
         self.set_player_select(1) 
         
-        # Display player select
+        # Display player selection
         screen.blit(TITLE_FONT.render(str(self.player_select), 1, BLACK), (365, 600))    
         
         
@@ -237,7 +231,7 @@ class MenuView:
                 
                 x, y = pygame.mouse.get_pos()
                 
-                # Slider area
+                # Slider
                 if (x >= 125 and x <= 345) and (y >= 600 and y <= 640):
                 
                     # Start drag
@@ -257,25 +251,27 @@ class MenuView:
                         else:
                             pygame.draw.rect(screen, BLACK, Rect(x - 5, 600, 10, 40))    
                             
-                        # Update player select
-                        self.player_select = ((x - 125) // 30) + 1
+                        # Update player selection
+                        self.player_select = ((x - 125) // 30) + 1 
                         
-                        # Update player select label
+                        # Update player selection label
                         pygame.draw.rect(screen, WHITE, Rect(365, 600, 80, 80))
-                        screen.blit(TITLE_FONT.render(str(self.get_player_select()), 1, BLACK), (365, 600)) 
+                        screen.blit(TITLE_FONT.render(
+                            str(self.get_player_select()), 
+                            1, BLACK), (365, 600)) 
                         
                         pygame.display.flip()
                 
                     # End drag
                     elif (event.type == pygame.MOUSEBUTTONUP) and (drag == True):
                         drag = False
-                        
+                
+                # Start button      
                 elif (x >= 115 and x <= 325) and (y >= 695 and y <= 730):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         menu = False
                         pygame.display.quit()
-                        
-                # Other events   
+                          
                 else :
                     if event.type == pygame.QUIT:
                         sys.exit()     
@@ -290,8 +286,10 @@ class MenuView:
         """Get the number of players"""
         return self.player_select 
                 
+                
 class BoardView:
     """Class responsible for visually representing the game state"""
+    
     
     def __init__(self, model): 
         """Initialize a graphical representation of the given game board"""
@@ -343,7 +341,8 @@ class BoardView:
                 y_coord = self.tile_margin + ((self.tile_size + self.tile_margin) * row)
                 
                 # Draw square tiles
-                pygame.draw.rect(screen, color, [x_coord, y_coord, self.tile_size, self.tile_size])
+                pygame.draw.rect(screen, color, 
+                                 [x_coord, y_coord, self.tile_size, self.tile_size])
          
         # Update pygame display
         pygame.display.flip()
@@ -371,7 +370,7 @@ if __name__ == "__main__":
     player_list = {}
     
     for player in range(1, num_players + 1):
-        # Assign a color to every player
+        # Assign a random color to every player
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)
@@ -416,7 +415,11 @@ if __name__ == "__main__":
                     
                     # Claim tile
                     board[row][column] = player
-                    print("Tile" + "[" + str(row) + "][" + str(column) + "] " + "claimed by Player " + str(player))
+                    print("Tile" + 
+                          "[" + str(row) + "]" + 
+                          "[" + str(column) + "] " + 
+                          "claimed by Player " + 
+                          str(player))
                     
                     #Update board
                     view.update()
@@ -435,9 +438,9 @@ if __name__ == "__main__":
                 else:
                     print("Tile" + 
                           "[" + str(row) + "]" + 
-                          "[" + str(column) + "] " 
-                          + "already claimed by Player " 
-                          + str(board[row][column]))                
+                          "[" + str(column) + "] " +
+                          "already claimed by Player " +
+                          str(board[row][column]))                
                 
         
             elif event.type == pygame.QUIT:
