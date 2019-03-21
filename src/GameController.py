@@ -6,7 +6,7 @@ import time
 
 
 class Controller:
-    """Class responsible for interacting with the Board, Model and View."""
+    """Class responsible for interacting with the Model and View."""
     
     def __init__(self, view):
         """Initialize a controller taking input from the View."""
@@ -31,9 +31,9 @@ class Controller:
         pygame.display.set_caption("Player {}'s turn".format(current_player))
         
         # Start playing
-        game = True
+        is_won = False
         
-        while game:
+        while not is_won:
             
             for event in pygame.event.get():
             
@@ -63,8 +63,8 @@ class Controller:
                             # Display win animation
                             self.view.win_animation(current_player)
 
-                            # End game                   
-                            game = False
+                            # Update win condition                  
+                            is_won = True
   
                         # Continue game if no winning move
                         else:    
