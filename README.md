@@ -57,7 +57,6 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 * In the unzipped file, run the file named ```Connect5.py``` in your favourite python IDE.
 
 ### For ```MAC OS X```
-#### Option 1: Clone the repo
 Open Terminal
 The following commands will install Connect SQRT(25) on your Desktop. You can replace ```Desktop``` with any other directory you choose to install the game directory in.
 ```bash
