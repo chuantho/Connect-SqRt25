@@ -54,7 +54,7 @@ The following commands will install Connect SQRT(25) on your ```Desktop```. You 
 ### For ```Windows```
 * Download the zip file by clicking here.
 * Unzip the file via 7-Zip, WinRAR, or any other zip files software.
-* In the unzipped file, run the executable named ```Connect5```.
+* In the unzipped file, run the file named ```Connect5.py``` in your favourite python IDE.
 
 ### For ```MAC OS X```
 #### Option 1: Clone the repo
@@ -111,7 +111,7 @@ All game screenshots are placed in the ```screenshots``` directory.
 * ```Controller.play()``` : Loops over the ```mouse_events``` until a player wins the game or quits. If the player clicks on an unclaimed tile, the tile is claimed by the player and the tile is assigned their ```player_number``` in the ```Model```. After every move, ```View.update()``` is called to update the graphical representation and ```Model.is_won()``` is called to check if the game is won. If the game is won, ```View``` plays a special win animation and the game is done. If the game is not won, the game continues with the next player. 
 
 ### Flow of execution
-1. The ```Connect5``` executable is run
+1. The ```Connect5.py``` file is run.
 2. A ```Menu``` object is initialized. The ```Menu``` initializes a graphical interface to allow the user to select the number of players for the game.
 3. ```Connect5``` creates players according to the number of players selected in ```Menu```. Each player is assigned a random color and is added to the ```player_list``` dictionary which maps each ```player_number``` to a ```color```.
 4. A ```Model``` object is initialized. The ```Model``` takes the ```player_list``` dictionary and stores it. The ```Model``` initializes the empty ```board```.
@@ -142,7 +142,7 @@ All game screenshots are placed in the ```screenshots``` directory.
 * **Alexandre Gagne** - [salemalex11](https://github.com/salemalex11)
 * **Anthony Chu** - [chuantho](https://github.com/chuantho)
 * **Hameza Abubeker** - [Hameza-A](https://github.com/Hameza-A)
-* **Jason Chabra** -[JasonChabra](https://github.com/JasonChabra)
+* **Jason Chabra** - [JasonChabra](https://github.com/JasonChabra)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
